@@ -244,8 +244,11 @@
 </script>
 
 <script>
-  // 在线数据地址：发布后填上线上 data.json 的 URL（例如 GitHub raw 地址），留空则始终使用内置数据
-  const DATA_URL = "";
+  // 在线数据地址（按顺序尝试，第一个成功即用）：GitHub raw + jsDelivr（国内更稳）
+  const DATA_URLS = [
+    "https://raw.githubusercontent.com/qingmingque888-gif/seer-pve-guide/main/data.json",
+    "https://cdn.jsdelivr.net/gh/qingmingque888-gif/seer-pve-guide@main/data.json"
+  ];
   const STORAGE_PIN_KEY = "seer-pve-pinned";
 
   const EMBEDDED_DATA = JSON.parse(document.getElementById("embedded-data").textContent);
@@ -277,22 +280,22 @@
   }
 
   async function loadData() {
-    if (!DATA_URL) {
+    if (DATA_URLS.length === 0) {
       data = EMBEDDED_DATA; dataSource = "内置数据"; render(); return;
     }
-    try {
-      var ctrl = new AbortController();
-      var timer = setTimeout(function () { ctrl.abort(); }, 5000);
-      var res = await fetch(DATA_URL, { cache: "no-store", signal: ctrl.signal });
-      clearTimeout(timer);
-      if (!res.ok) throw new Error("http " + res.status);
-      var j = await res.json();
-      if (!j || !Array.isArray(j.levels) || !Array.isArray(j.pets)) throw new Error("数据格式不正确");
-      data = j; dataSource = "在线数据";
-    } catch (e) {
-      data = EMBEDDED_DATA; dataSource = "内置数据（离线兜底）";
+    for (var i = 0; i < DATA_URLS.length; i++) {
+      try {
+        var ctrl = new AbortController();
+        var timer = setTimeout(function () { ctrl.abort(); }, 6000);
+        var res = await fetch(DATA_URLS[i], { cache: "no-store", signal: ctrl.signal });
+        clearTimeout(timer);
+        if (!res.ok) throw new Error("http " + res.status);
+        var j = await res.json();
+        if (!j || !Array.isArray(j.levels) || !Array.isArray(j.pets)) throw new Error("数据格式不正确");
+        data = j; dataSource = "在线数据"; render(); return;
+      } catch (e) { /* 尝试下一个地址 */ }
     }
-    render();
+    data = EMBEDDED_DATA; dataSource = "内置数据（离线兜底）"; render();
   }
 
   function render() {
