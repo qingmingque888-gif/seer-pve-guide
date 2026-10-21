@@ -1,0 +1,280 @@
+{
+  "version": "2026-10-21",
+  "updatedAt": "2026-10-21",
+  "days": [
+    {
+      "day": 1,
+      "title": "第 1 天",
+      "todo": ["主线推进（量子回廊）", "谱尼七封印", "谱尼真身", "精灵王试炼（每日）"],
+      "unlockLevels": ["level-puni-seal", "level-puni-real", "level-trial"]
+    },
+    {
+      "day": 2,
+      "title": "第 2 天",
+      "todo": ["怒雷神裁·雷伊 · 雷鸣初现", "灵石守卫第三关", "精灵王试炼（每日）"],
+      "unlockLevels": ["level-raich-1", "level-lingshi-3", "level-trial"]
+    },
+    {
+      "day": 3,
+      "title": "第 3 天",
+      "todo": ["怒雷神裁·雷伊 · 电锋凝聚", "灭战神决·盖亚 · 道之挑战", "精灵王试炼（每日）"],
+      "unlockLevels": ["level-raich-2", "level-gaia-dao", "level-trial"]
+    },
+    {
+      "day": 4,
+      "title": "第 4 天",
+      "todo": ["怒雷神裁·雷伊 · 天域试炼", "灭战神决·盖亚 · 逆转挑战", "精灵王试炼（每日）"],
+      "unlockLevels": ["level-raich-3", "level-gaia-nizhuan", "level-trial"]
+    },
+    {
+      "day": 5,
+      "title": "第 5 天",
+      "todo": ["怒雷神裁·雷伊 · 怒雷神裁", "灭战神决·盖亚 · 极道挑战", "精灵王试炼（每日）"],
+      "unlockLevels": ["level-raich-4", "level-gaia-jidao", "level-trial"]
+    }
+  ],
+  "levels": [
+    {
+      "id": "level-puni-seal",
+      "name": "谱尼七封印",
+      "category": "谱尼",
+      "day": 1,
+      "difficulty": 2,
+      "recommendedPets": [
+        { "petId": "starlight-lux", "role": "主力", "note": "单宠打穿" }
+      ],
+      "requiredPets": ["starlight-lux"],
+      "steps": [
+        "星光鲁斯王开局「随风逐浪」强化",
+        "随后「浪打千击」逐个击破七个封印",
+        "血量低时用「排山倒海」吸回"
+      ],
+      "tips": "新号第一天即可用一只鲁斯王打穿谱尼七封印。"
+    },
+    {
+      "id": "level-puni-real",
+      "name": "谱尼真身",
+      "category": "谱尼",
+      "day": 1,
+      "difficulty": 3,
+      "recommendedPets": [
+        { "petId": "starlight-lux", "role": "主力", "note": "单挑" }
+      ],
+      "requiredPets": ["starlight-lux"],
+      "steps": [
+        "先通过谱尼七封印解锁真身",
+        "鲁斯王「随风逐浪」强化后「浪打千击」持续输出",
+        "提前备好足够体力药剂"
+      ],
+      "tips": "打不过可先做七封印积累资源再来。"
+    },
+    {
+      "id": "level-raich-1",
+      "name": "雷鸣初现",
+      "category": "怒雷神裁·雷伊",
+      "day": 2,
+      "difficulty": 2,
+      "recommendedPets": [
+        { "petId": "starlight-lux", "role": "主力", "note": "爆攻配置" }
+      ],
+      "requiredPets": ["starlight-lux"],
+      "steps": [
+        "用爆攻星光鲁斯王（刻印两偃月一衡）",
+        "绿火下一直点第五技能即可",
+        "每天 3 次挑战，每次击败 Boss 增加约 10% 进度"
+      ],
+      "tips": "约 4 天可过第一关。"
+    },
+    {
+      "id": "level-raich-2",
+      "name": "电锋凝聚",
+      "category": "怒雷神裁·雷伊",
+      "day": 3,
+      "difficulty": 3,
+      "recommendedPets": [
+        { "petId": "starlight-lux", "role": "主力", "note": "爆攻 / 压防" },
+        { "petId": "king-hamo", "role": "副手", "note": "防御体配置" }
+      ],
+      "requiredPets": ["starlight-lux", "king-hamo"],
+      "steps": [
+        "需依次达成 5 个条件",
+        "① 累计 10000 伤害：爆攻鲁斯王 + 地面石S（绿火）或压防鲁斯王打克制",
+        "② 累计 40 回合：王之哈莫先手消强后一直「龙子诞生」（无需击败）",
+        "③ 累计出战 30 只精灵：王哈 + 4 只 1 级野怪循环互切",
+        "④ 累计阵亡 10 只精灵：先送 5 只野怪，再上压防鲁斯王打克制",
+        "⑤ 累计使用 30 次攻击技能：一直先手攻击"
+      ],
+      "tips": "需要准备 4 只 1 级野怪作为「送死」工具宠。"
+    },
+    {
+      "id": "level-raich-3",
+      "name": "天域试炼",
+      "category": "怒雷神裁·雷伊",
+      "day": 4,
+      "difficulty": 4,
+      "recommendedPets": [
+        { "petId": "king-hamo", "role": "主力", "note": "" },
+        { "petId": "starlight-lux", "role": "副手", "note": "" }
+      ],
+      "requiredPets": ["king-hamo", "starlight-lux"],
+      "steps": [
+        "共 7 个 Boss，每天打一个（约 7 天）",
+        "各 Boss 条件不同（伤害上限 / 属性技能次数 / 暴击次数 / 回合数等）",
+        "核心用王之哈莫与星光鲁斯王，按当天条件调整打法"
+      ],
+      "tips": "进阶可用圣灵谱尼、六界/帝皇之御 84 公式等（详细数据待补充）。"
+    },
+    {
+      "id": "level-raich-4",
+      "name": "怒雷神裁",
+      "category": "怒雷神裁·雷伊",
+      "day": 5,
+      "difficulty": 4,
+      "recommendedPets": [
+        { "petId": "king-hamo", "role": "主力", "note": "" }
+      ],
+      "requiredPets": ["king-hamo"],
+      "steps": [
+        "Boss 雷伊 18000 血，神话 / 必先 / 闪避 100% / 封属 / 每回合 300 固伤",
+        "可用「84 公式」（六界 / 帝皇之御）输出"
+      ],
+      "tips": "进阶打法，需 84 公式相关精灵（详细数据待补充）。"
+    },
+    {
+      "id": "level-gaia-dao",
+      "name": "道之挑战",
+      "category": "灭战神决·盖亚",
+      "day": 3,
+      "difficulty": 2,
+      "recommendedPets": [
+        { "petId": "king-hamo", "role": "血之道", "note": "叠强化抗回合" },
+        { "petId": "starlight-lux", "role": "天之道 / 邪之道", "note": "暴击与第五技能" }
+      ],
+      "requiredPets": ["king-hamo", "starlight-lux"],
+      "steps": [
+        "分三道：血之道 / 天之道 / 邪之道",
+        "血之道：王之哈莫叠强化抗 10 回合后第 11 回合打第五（约 +15% 进度）",
+        "天之道：星光鲁斯王打暴击，累计 10 次暴击（约 +10%）",
+        "邪之道：星光鲁斯王（攻体）一直第五，10 回合内击败 4 个 Boss"
+      ],
+      "tips": ""
+    },
+    {
+      "id": "level-gaia-nizhuan",
+      "name": "逆转挑战",
+      "category": "灭战神决·盖亚",
+      "day": 4,
+      "difficulty": 3,
+      "recommendedPets": [
+        { "petId": "king-hamo", "role": "主力", "note": "逆转邪道主力" }
+      ],
+      "requiredPets": ["king-hamo"],
+      "steps": [
+        "分三道：逆转血道 / 逆转天道 / 逆转邪道",
+        "逆转血道：压血魔钰 / 月照星魂爆攻打 150 秒杀",
+        "逆转天道：银翼套压血魔钰 150 秒杀，全程无暴击",
+        "逆转邪道（最难）：王哈 / 不死大队抗 10 回合后切压血魔钰强攻"
+      ],
+      "tips": "进阶需魔钰、月照星魂、蒂朵、潘克多斯等（详细数据待补充）。"
+    },
+    {
+      "id": "level-gaia-jidao",
+      "name": "极道挑战",
+      "category": "灭战神决·盖亚",
+      "day": 5,
+      "difficulty": 4,
+      "recommendedPets": [
+        { "petId": "king-hamo", "role": "主力", "note": "" }
+      ],
+      "requiredPets": ["king-hamo"],
+      "steps": [
+        "涉及累计受伤害、攻击次数、低威力技能次数、总回合数等条件",
+        "常用圣灵谱尼、草潘、千裳、诺伊尔顿等"
+      ],
+      "tips": "进阶关卡，需多只进阶精灵（详细数据待补充）。"
+    },
+    {
+      "id": "level-trial",
+      "name": "精灵王试炼",
+      "category": "日常",
+      "day": 1,
+      "difficulty": 1,
+      "recommendedPets": [
+        { "petId": "king-hamo", "role": "主力", "note": "龙王现世培养" }
+      ],
+      "requiredPets": ["king-hamo"],
+      "steps": [
+        "新手每日必做 PVE，分简单 / 中等 / 困难三难度",
+        "核心用「龙王现世」活动培养王之哈莫",
+        "打法顺序：龙子诞生强化 → 狂龙击杀消强 → 王·龙战八荒输出"
+      ],
+      "tips": "新手优先兑换茉蕊儿、乔特鲁德（乔特鲁德与王哈同放背包激活龙族羁绊）。"
+    },
+    {
+      "id": "level-lingshi-3",
+      "name": "灵石守卫第三关",
+      "category": "灵石守卫",
+      "day": 2,
+      "difficulty": 2,
+      "recommendedPets": [
+        { "petId": "starlight-lux", "role": "主力", "note": "零氪打法" }
+      ],
+      "requiredPets": ["starlight-lux"],
+      "steps": [
+        "仅需星光鲁斯王（零氪打法）",
+        "银翼套 + 倒吊假面，带紫火、加强效攻击珠",
+        "两回合解决：「克制」+「星光·闪击」"
+      ],
+      "tips": "背包不要带西游羁绊，要压防御当玻璃大炮。"
+    }
+  ],
+  "pets": [
+    {
+      "id": "starlight-lux",
+      "name": "星光鲁斯王",
+      "type": "水系",
+      "role": "全能强攻 / 坦克（开荒核心）",
+      "obtain": "开局「星光三主宠」三选一，强烈推荐首选",
+      "moveset": [
+        "星光·闪击（绑定 5 级以上威力宝石；消强化、获取锁伤）",
+        "星光·浪打千击（第五技能·主输出，必中多段连击）",
+        "星光·排山倒海（伤害转体力，无视伤害限制）",
+        "星光·水天一色（免疫异常 + 回血）",
+        "星光·随风逐浪（强化 + 增伤）"
+      ],
+      "build": {
+        "学习力": "攻击 255 + 体力 255",
+        "性格": "固执 / 孤独 / 调皮（加攻击）",
+        "天赋": "尽量洗到 31",
+        "特性": "强袭",
+        "刻印": "衡·巨刃 + 锦·铅白（爆攻：双锦水红 + 衡疾袭）",
+        "抗性": "致命伤害 5%（可不开启）"
+      },
+      "note": "攻击必定暴击、封印对手属性技能；满级可复活 1 次并附加大量护盾 / 护罩。",
+      "tips": "通用打法：随风逐浪强化 → 浪打千击输出；血量低时用排山倒海吸回。"
+    },
+    {
+      "id": "king-hamo",
+      "name": "王之哈莫",
+      "type": "龙系 / 王系",
+      "role": "PVE 主力（精灵王试炼核心）",
+      "obtain": "「龙王现世」活动培养",
+      "moveset": [
+        "狂龙击杀（先制 +3，消强）",
+        "龙子诞生（全属性 +1，恢复 1/2 最大 HP）",
+        "龙腾寰宇（先制 +3，消除回合类效果）",
+        "王·龙战八荒（必中，主输出）"
+      ],
+      "build": {
+        "学习力": "攻击 255 + 体力 255",
+        "性格": "固执",
+        "天赋": "尽量 31",
+        "特性": "瞬杀（首选）/ 强袭（次选）",
+        "刻印": "2 × 衡·巨刃 + 熠·奋威（毕业可换泰坦之力α等）",
+        "抗性": "待核对"
+      },
+      "note": "与乔特鲁德同放背包可激活「龙族羁绊」（体力 +20%、受伤 -20%）。",
+      "tips": "打法顺序：龙子诞生强化 → 狂龙击杀消强 → 王·龙战八荒输出。"
+    }
+  ]
+}

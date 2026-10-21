@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛尔号新手 PVE 攻略</title>
+<style>
+  :root {
+    --bg1: #10172e;
+    --bg2: #1b2a52;
+    --bg3: #24376b;
+    --card: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(168, 192, 255, 0.22);
+    --accent: #a8c0ff;
+    --accent-strong: #7f9dff;
+    --gold: #ffd479;
+    --text: #eaf0ff;
+    --text-dim: #9fb0d0;
+    --text-faint: #7c8db0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", system-ui, sans-serif;
+    color: var(--text);
+    background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 55%, var(--bg3) 100%) fixed;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+  /* 星光背景 */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1.5px 1.5px at 18% 28%, rgba(255,255,255,.5), transparent),
+      radial-gradient(1px 1px at 72% 16%, rgba(255,255,255,.38), transparent),
+      radial-gradient(1.5px 1.5px at 84% 58%, rgba(255,212,121,.55), transparent),
+      radial-gradient(1px 1px at 42% 74%, rgba(255,255,255,.32), transparent),
+      radial-gradient(1.5px 1.5px at 8% 84%, rgba(168,192,255,.5), transparent),
+      radial-gradient(1px 1px at 58% 46%, rgba(255,255,255,.28), transparent),
+      radial-gradient(1px 1px at 30% 12%, rgba(255,255,255,.4), transparent),
+      radial-gradient(1px 1px at 92% 32%, rgba(255,255,255,.35), transparent);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .app { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  header {
+    position: sticky; top: 0; z-index: 10;
+    background: linear-gradient(180deg, rgba(16,23,46,.96), rgba(16,23,46,.82));
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--card-border);
+    padding: 14px 0 12px;
+    margin: -20px -16px 18px;
+    padding-left: 16px; padding-right: 16px;
+  }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: 1px; }
+  h1 .star { color: var(--gold); }
+  .subtitle { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+  .status-badge {
+    display: inline-block; margin-top: 8px; font-size: 12px; color: var(--accent);
+    background: rgba(168,192,255,.12); border: 1px solid rgba(168,192,255,.28);
+    padding: 3px 10px; border-radius: 999px;
+  }
+  .search-wrap { margin-top: 12px; }
+  #search {
+    width: 100%; padding: 11px 14px; border-radius: 12px;
+    border: 1px solid var(--card-border);
+    background: rgba(255,255,255,.07); color: var(--text);
+    font-size: 15px; outline: none;
+  }
+  #search::placeholder { color: var(--text-faint); }
+  #search:focus { border-color: var(--accent-strong); box-shadow: 0 0 0 3px rgba(127,157,255,.18); }
+
+  .tabs { display: flex; gap: 8px; margin: 16px 0; }
+  .tab {
+    flex: 1; padding: 10px; text-align: center; cursor: pointer;
+    background: rgba(255,255,255,.05); border: 1px solid var(--card-border);
+    border-radius: 12px; color: var(--text-dim); font-size: 15px;
+    transition: all .15s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active {
+    color: #0d1530; font-weight: 700;
+    background: linear-gradient(120deg, var(--accent), #c9d8ff);
+    border-color: transparent;
+  }
+
+  .group-title { font-size: 15px; color: var(--accent); margin: 20px 0 10px; font-weight: 600; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--card-border);
+    border-radius: 14px; margin-bottom: 10px; overflow: hidden;
+  }
+  .card.pinned { border-color: rgba(255,212,121,.55); box-shadow: 0 0 0 1px rgba(255,212,121,.25) inset; }
+  .card-head { display: flex; align-items: center; gap: 10px; padding: 13px 14px; cursor: pointer; }
+  .card-head:hover { background: rgba(255,255,255,.04); }
+  .pin-btn {
+    flex: 0 0 auto; width: 30px; height: 30px; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--card-border); background: transparent;
+    color: var(--text-faint); font-size: 18px; line-height: 1;
+  }
+  .pin-btn.on { color: var(--gold); border-color: rgba(255,212,121,.5); background: rgba(255,212,121,.12); }
+  .card-title-wrap { flex: 1; min-width: 0; }
+  .card-name { font-size: 16px; font-weight: 600; display: block; }
+  .card-meta { font-size: 12px; color: var(--text-dim); }
+  .card-meta .stars { color: var(--gold); letter-spacing: 1px; }
+  .card-req { font-size: 12px; color: var(--text-faint); margin-top: 2px; }
+  .card-chevron { color: var(--text-faint); font-size: 12px; }
+
+  .card-body { padding: 4px 16px 16px; border-top: 1px solid rgba(168,192,255,.12); }
+  .sec { margin-top: 12px; }
+  .sec h3 { font-size: 13px; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+  .rec { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 7px 10px; background: rgba(255,255,255,.04); border-radius: 8px; margin-bottom: 6px; }
+  .role { font-size: 12px; color: var(--gold); background: rgba(255,212,121,.12); padding: 1px 8px; border-radius: 999px; }
+  .note { font-size: 12px; color: var(--text-dim); }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip {
+    font-size: 13px; color: var(--text); background: rgba(168,192,255,.14);
+    border: 1px solid rgba(168,192,255,.3); padding: 3px 11px; border-radius: 999px;
+  }
+  .pet-link { cursor: pointer; color: var(--accent); font-weight: 600; border: none; background: none; font-size: 15px; padding: 0; text-decoration: underline; text-underline-offset: 3px; }
+  .pet-link:hover { color: #fff; }
+  button.pet-link.chip { text-decoration: none; font-size: 13px; }
+  .steps { padding-left: 20px; }
+  .steps li { margin-bottom: 5px; font-size: 14px; }
+  .sec ul { padding-left: 20px; }
+  .sec ul li { font-size: 14px; margin-bottom: 4px; }
+  .tips { background: rgba(255,212,121,.07); border: 1px solid rgba(255,212,121,.2); border-radius: 10px; padding: 10px 12px; }
+  .tips p { font-size: 13px; color: #f4e0b0; }
+  .muted { color: var(--text-faint); font-size: 13px; }
+  .empty { text-align: center; color: var(--text-faint); padding: 40px 10px; font-size: 14px; }
+  .disclaimer { margin-top: 16px; font-size: 12px; color: var(--text-faint); text-align: center; }
+
+  /* 时间线 */
+  .timeline { display: grid; grid-template-columns: 130px 1fr; gap: 14px; align-items: start; }
+  .day-list { display: flex; flex-direction: column; gap: 8px; }
+  .day-btn {
+    text-align: left; padding: 10px 14px; border-radius: 10px; cursor: pointer;
+    background: rgba(255,255,255,.05); border: 1px solid var(--card-border);
+    color: var(--text-dim); font-size: 14px;
+  }
+  .day-btn:hover { color: var(--text); }
+  .day-btn.active { color: #0d1530; font-weight: 700; background: linear-gradient(120deg, var(--accent), #c9d8ff); border-color: transparent; }
+  .day-detail h2 { font-size: 18px; margin-bottom: 6px; }
+  @media (max-width: 620px) { .timeline { grid-template-columns: 1fr; } .day-list { flex-direction: row; overflow-x: auto; } .day-btn { white-space: nowrap; } }
+
+  /* 宠物弹窗 */
+  .overlay {
+    position: fixed; inset: 0; z-index: 50; display: none;
+    background: rgba(5,8,20,.7); backdrop-filter: blur(3px);
+    align-items: flex-start; justify-content: center; padding: 24px 16px; overflow-y: auto;
+  }
+  .overlay.show { display: flex; }
+  .modal {
+    background: linear-gradient(160deg, #1b2a52, #24376b);
+    border: 1px solid var(--card-border); border-radius: 16px;
+    max-width: 520px; width: 100%; padding: 22px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  }
+  .modal h2 { font-size: 20px; margin-bottom: 8px; }
+  .pet-tags { display: flex; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+  .tag { font-size: 12px; color: var(--accent); background: rgba(168,192,255,.14); border: 1px solid rgba(168,192,255,.3); padding: 2px 10px; border-radius: 999px; }
+  .kv { display: flex; gap: 12px; padding: 6px 0; border-bottom: 1px dashed rgba(168,192,255,.15); font-size: 14px; }
+  .kv .k { flex: 0 0 72px; color: var(--text-dim); }
+  .kv .v { color: var(--text); }
+  .modal-close {
+    display: block; margin: 18px auto 0; padding: 9px 30px; border-radius: 10px; cursor: pointer;
+    border: 1px solid var(--card-border); background: rgba(255,255,255,.08); color: var(--text); font-size: 14px;
+  }
+  .modal-close:hover { background: rgba(255,255,255,.14); }
+
+  footer { margin-top: 30px; text-align: center; font-size: 12px; color: var(--text-faint); }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>赛尔号新手 <span class="star">✦</span> PVE 攻略</h1>
+    <div class="subtitle">《赛尔号：巅峰之战》新手 Boss 挑战查询</div>
+    <span class="status-badge" id="status">加载中…</span>
+    <div class="search-wrap">
+      <input id="search" type="text" placeholder="搜索关卡 / 宠物 / 分类…">
+    </div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-view="levels">全部关卡</button>
+    <button class="tab" data-view="timeline">时间线</button>
+  </div>
+
+  <main>
+    <div id="levels-view">
+      <div id="levels-list"></div>
+    </div>
+    <div id="timeline-view" style="display:none;">
+      <div class="timeline">
+        <div class="day-list" id="day-list"></div>
+        <div class="day-detail" id="day-detail"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>攻略数据整理自公开社区攻略，仅供新手参考；个别数值可能随版本更新而变动。</footer>
+</div>
+
+<div class="overlay" id="pet-modal">
+  <div class="modal">
+    <div id="pet-modal-body"></div>
+    <button class="modal-close" data-close-modal="1">关闭</button>
+  </div>
+</div>
+
+<script type="application/json" id="embedded-data">
+{
+  "version": "2026-10-21",
+  "updatedAt": "2026-10-21",
+  "days": [
+    { "day": 1, "title": "第 1 天", "todo": ["主线推进（量子回廊）", "谱尼七封印", "谱尼真身", "精灵王试炼（每日）"], "unlockLevels": ["level-puni-seal", "level-puni-real", "level-trial"] },
+    { "day": 2, "title": "第 2 天", "todo": ["怒雷神裁·雷伊 · 雷鸣初现", "灵石守卫第三关", "精灵王试炼（每日）"], "unlockLevels": ["level-raich-1", "level-lingshi-3", "level-trial"] },
+    { "day": 3, "title": "第 3 天", "todo": ["怒雷神裁·雷伊 · 电锋凝聚", "灭战神决·盖亚 · 道之挑战", "精灵王试炼（每日）"], "unlockLevels": ["level-raich-2", "level-gaia-dao", "level-trial"] },
+    { "day": 4, "title": "第 4 天", "todo": ["怒雷神裁·雷伊 · 天域试炼", "灭战神决·盖亚 · 逆转挑战", "精灵王试炼（每日）"], "unlockLevels": ["level-raich-3", "level-gaia-nizhuan", "level-trial"] },
+    { "day": 5, "title": "第 5 天", "todo": ["怒雷神裁·雷伊 · 怒雷神裁", "灭战神决·盖亚 · 极道挑战", "精灵王试炼（每日）"], "unlockLevels": ["level-raich-4", "level-gaia-jidao", "level-trial"] }
+  ],
+  "levels": [
+    { "id": "level-puni-seal", "name": "谱尼七封印", "category": "谱尼", "day": 1, "difficulty": 2, "recommendedPets": [{ "petId": "starlight-lux", "role": "主力", "note": "单宠打穿" }], "requiredPets": ["starlight-lux"], "steps": ["星光鲁斯王开局「随风逐浪」强化", "随后「浪打千击」逐个击破七个封印", "血量低时用「排山倒海」吸回"], "tips": "新号第一天即可用一只鲁斯王打穿谱尼七封印。" },
+    { "id": "level-puni-real", "name": "谱尼真身", "category": "谱尼", "day": 1, "difficulty": 3, "recommendedPets": [{ "petId": "starlight-lux", "role": "主力", "note": "单挑" }], "requiredPets": ["starlight-lux"], "steps": ["先通过谱尼七封印解锁真身", "鲁斯王「随风逐浪」强化后「浪打千击」持续输出", "提前备好足够体力药剂"], "tips": "打不过可先做七封印积累资源再来。" },
+    { "id": "level-raich-1", "name": "雷鸣初现", "category": "怒雷神裁·雷伊", "day": 2, "difficulty": 2, "recommendedPets": [{ "petId": "starlight-lux", "role": "主力", "note": "爆攻配置" }], "requiredPets": ["starlight-lux"], "steps": ["用爆攻星光鲁斯王（刻印两偃月一衡）", "绿火下一直点第五技能即可", "每天 3 次挑战，每次击败 Boss 增加约 10% 进度"], "tips": "约 4 天可过第一关。" },
+    { "id": "level-raich-2", "name": "电锋凝聚", "category": "怒雷神裁·雷伊", "day": 3, "difficulty": 3, "recommendedPets": [{ "petId": "starlight-lux", "role": "主力", "note": "爆攻 / 压防" }, { "petId": "king-hamo", "role": "副手", "note": "防御体配置" }], "requiredPets": ["starlight-lux", "king-hamo"], "steps": ["需依次达成 5 个条件", "① 累计 10000 伤害：爆攻鲁斯王 + 地面石S（绿火）或压防鲁斯王打克制", "② 累计 40 回合：王之哈莫先手消强后一直「龙子诞生」（无需击败）", "③ 累计出战 30 只精灵：王哈 + 4 只 1 级野怪循环互切", "④ 累计阵亡 10 只精灵：先送 5 只野怪，再上压防鲁斯王打克制", "⑤ 累计使用 30 次攻击技能：一直先手攻击"], "tips": "需要准备 4 只 1 级野怪作为「送死」工具宠。" },
+    { "id": "level-raich-3", "name": "天域试炼", "category": "怒雷神裁·雷伊", "day": 4, "difficulty": 4, "recommendedPets": [{ "petId": "king-hamo", "role": "主力", "note": "" }, { "petId": "starlight-lux", "role": "副手", "note": "" }], "requiredPets": ["king-hamo", "starlight-lux"], "steps": ["共 7 个 Boss，每天打一个（约 7 天）", "各 Boss 条件不同（伤害上限 / 属性技能次数 / 暴击次数 / 回合数等）", "核心用王之哈莫与星光鲁斯王，按当天条件调整打法"], "tips": "进阶可用圣灵谱尼、六界/帝皇之御 84 公式等（详细数据待补充）。" },
+    { "id": "level-raich-4", "name": "怒雷神裁", "category": "怒雷神裁·雷伊", "day": 5, "difficulty": 4, "recommendedPets": [{ "petId": "king-hamo", "role": "主力", "note": "" }], "requiredPets": ["king-hamo"], "steps": ["Boss 雷伊 18000 血，神话 / 必先 / 闪避 100% / 封属 / 每回合 300 固伤", "可用「84 公式」（六界 / 帝皇之御）输出"], "tips": "进阶打法，需 84 公式相关精灵（详细数据待补充）。" },
+    { "id": "level-gaia-dao", "name": "道之挑战", "category": "灭战神决·盖亚", "day": 3, "difficulty": 2, "recommendedPets": [{ "petId": "king-hamo", "role": "血之道", "note": "叠强化抗回合" }, { "petId": "starlight-lux", "role": "天之道 / 邪之道", "note": "暴击与第五技能" }], "requiredPets": ["king-hamo", "starlight-lux"], "steps": ["分三道：血之道 / 天之道 / 邪之道", "血之道：王之哈莫叠强化抗 10 回合后第 11 回合打第五（约 +15% 进度）", "天之道：星光鲁斯王打暴击，累计 10 次暴击（约 +10%）", "邪之道：星光鲁斯王（攻体）一直第五，10 回合内击败 4 个 Boss"], "tips": "" },
+    { "id": "level-gaia-nizhuan", "name": "逆转挑战", "category": "灭战神决·盖亚", "day": 4, "difficulty": 3, "recommendedPets": [{ "petId": "king-hamo", "role": "主力", "note": "逆转邪道主力" }], "requiredPets": ["king-hamo"], "steps": ["分三道：逆转血道 / 逆转天道 / 逆转邪道", "逆转血道：压血魔钰 / 月照星魂爆攻打 150 秒杀", "逆转天道：银翼套压血魔钰 150 秒杀，全程无暴击", "逆转邪道（最难）：王哈 / 不死大队抗 10 回合后切压血魔钰强攻"], "tips": "进阶需魔钰、月照星魂、蒂朵、潘克多斯等（详细数据待补充）。" },
+    { "id": "level-gaia-jidao", "name": "极道挑战", "category": "灭战神决·盖亚", "day": 5, "difficulty": 4, "recommendedPets": [{ "petId": "king-hamo", "role": "主力", "note": "" }], "requiredPets": ["king-hamo"], "steps": ["涉及累计受伤害、攻击次数、低威力技能次数、总回合数等条件", "常用圣灵谱尼、草潘、千裳、诺伊尔顿等"], "tips": "进阶关卡，需多只进阶精灵（详细数据待补充）。" },
+    { "id": "level-trial", "name": "精灵王试炼", "category": "日常", "day": 1, "difficulty": 1, "recommendedPets": [{ "petId": "king-hamo", "role": "主力", "note": "龙王现世培养" }], "requiredPets": ["king-hamo"], "steps": ["新手每日必做 PVE，分简单 / 中等 / 困难三难度", "核心用「龙王现世」活动培养王之哈莫", "打法顺序：龙子诞生强化 → 狂龙击杀消强 → 王·龙战八荒输出"], "tips": "新手优先兑换茉蕊儿、乔特鲁德（乔特鲁德与王哈同放背包激活龙族羁绊）。" },
+    { "id": "level-lingshi-3", "name": "灵石守卫第三关", "category": "灵石守卫", "day": 2, "difficulty": 2, "recommendedPets": [{ "petId": "starlight-lux", "role": "主力", "note": "零氪打法" }], "requiredPets": ["starlight-lux"], "steps": ["仅需星光鲁斯王（零氪打法）", "银翼套 + 倒吊假面，带紫火、加强效攻击珠", "两回合解决：「克制」+「星光·闪击」"], "tips": "背包不要带西游羁绊，要压防御当玻璃大炮。" }
+  ],
+  "pets": [
+    { "id": "starlight-lux", "name": "星光鲁斯王", "type": "水系", "role": "全能强攻 / 坦克（开荒核心）", "obtain": "开局「星光三主宠」三选一，强烈推荐首选", "moveset": ["星光·闪击（绑定 5 级以上威力宝石；消强化、获取锁伤）", "星光·浪打千击（第五技能·主输出，必中多段连击）", "星光·排山倒海（伤害转体力，无视伤害限制）", "星光·水天一色（免疫异常 + 回血）", "星光·随风逐浪（强化 + 增伤）"], "build": { "学习力": "攻击 255 + 体力 255", "性格": "固执 / 孤独 / 调皮（加攻击）", "天赋": "尽量洗到 31", "特性": "强袭", "刻印": "衡·巨刃 + 锦·铅白（爆攻：双锦水红 + 衡疾袭）", "抗性": "致命伤害 5%（可不开启）" }, "note": "攻击必定暴击、封印对手属性技能；满级可复活 1 次并附加大量护盾 / 护罩。", "tips": "通用打法：随风逐浪强化 → 浪打千击输出；血量低时用排山倒海吸回。" },
+    { "id": "king-hamo", "name": "王之哈莫", "type": "龙系 / 王系", "role": "PVE 主力（精灵王试炼核心）", "obtain": "「龙王现世」活动培养", "moveset": ["狂龙击杀（先制 +3，消强）", "龙子诞生（全属性 +1，恢复 1/2 最大 HP）", "龙腾寰宇（先制 +3，消除回合类效果）", "王·龙战八荒（必中，主输出）"], "build": { "学习力": "攻击 255 + 体力 255", "性格": "固执", "天赋": "尽量 31", "特性": "瞬杀（首选）/ 强袭（次选）", "刻印": "2 × 衡·巨刃 + 熠·奋威（毕业可换泰坦之力α等）", "抗性": "待核对" }, "note": "与乔特鲁德同放背包可激活「龙族羁绊」（体力 +20%、受伤 -20%）。", "tips": "打法顺序：龙子诞生强化 → 狂龙击杀消强 → 王·龙战八荒输出。" }
+  ]
+}
+</script>
+
+<script>
+  // 在线数据地址：发布后填上线上 data.json 的 URL（例如 GitHub raw 地址），留空则始终使用内置数据
+  const DATA_URL = "";
+  const STORAGE_PIN_KEY = "seer-pve-pinned";
+
+  const EMBEDDED_DATA = JSON.parse(document.getElementById("embedded-data").textContent);
+
+  let data = EMBEDDED_DATA;
+  let dataSource = "内置数据";
+  let view = "levels";
+  let query = "";
+  let pinned = new Set(JSON.parse(localStorage.getItem(STORAGE_PIN_KEY) || "[]"));
+  let selectedDay = null;
+  let expandedId = null;
+  let petModalId = null;
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function petById(id) { return (data.pets || []).find(function (p) { return p.id === id; }); }
+  function levelById(id) { return (data.levels || []).find(function (l) { return l.id === id; }); }
+  function diffStars(n) {
+    n = Math.max(0, Math.min(5, Number(n) || 0));
+    return "★".repeat(n) + "☆".repeat(5 - n);
+  }
+
+  function statusLabel() {
+    var t = data.updatedAt || data.version || "未知";
+    return dataSource + " · 更新于 " + t;
+  }
+
+  async function loadData() {
+    if (!DATA_URL) {
+      data = EMBEDDED_DATA; dataSource = "内置数据"; render(); return;
+    }
+    try {
+      var ctrl = new AbortController();
+      var timer = setTimeout(function () { ctrl.abort(); }, 5000);
+      var res = await fetch(DATA_URL, { cache: "no-store", signal: ctrl.signal });
+      clearTimeout(timer);
+      if (!res.ok) throw new Error("http " + res.status);
+      var j = await res.json();
+      if (!j || !Array.isArray(j.levels) || !Array.isArray(j.pets)) throw new Error("数据格式不正确");
+      data = j; dataSource = "在线数据";
+    } catch (e) {
+      data = EMBEDDED_DATA; dataSource = "内置数据（离线兜底）";
+    }
+    render();
+  }
+
+  function render() {
+    document.getElementById("status").textContent = statusLabel();
+    document.querySelectorAll(".tab").forEach(function (el) {
+      el.classList.toggle("active", el.dataset.view === view);
+    });
+    document.getElementById("levels-view").style.display = (view === "levels") ? "" : "none";
+    document.getElementById("timeline-view").style.display = (view === "timeline") ? "" : "none";
+    if (view === "timeline") renderTimeline(); else renderLevels();
+  }
+
+  function getFilteredLevels() {
+    var q = query.trim().toLowerCase();
+    var list = (data.levels || []).slice();
+    if (q) {
+      list = list.filter(function (l) {
+        var hay = (l.name + " " + l.category).toLowerCase();
+        if (hay.indexOf(q) !== -1) return true;
+        var petHit = false;
+        (l.recommendedPets || []).forEach(function (r) {
+          var p = petById(r.petId); if (p && p.name.toLowerCase().indexOf(q) !== -1) petHit = true;
+        });
+        (l.requiredPets || []).forEach(function (id) {
+          var p = petById(id); if (p && p.name.toLowerCase().indexOf(q) !== -1) petHit = true;
+        });
+        return petHit;
+      });
+    }
+    list.sort(function (a, b) {
+      var pa = pinned.has(a.id) ? 0 : 1;
+      var pb = pinned.has(b.id) ? 0 : 1;
+      if (pa !== pb) return pa - pb;
+      if (a.day !== b.day) return a.day - b.day;
+      return (a.category + a.name).localeCompare(b.category + b.name, "zh");
+    });
+    return list;
+  }
+
+  function requiredNames(l) {
+    return (l.requiredPets || []).map(function (id) {
+      var p = petById(id); return p ? p.name : id;
+    }).join("、");
+  }
+
+  function levelCardHtml(l) {
+    var isPinned = pinned.has(l.id);
+    var isOpen = expandedId === l.id;
+    var req = requiredNames(l);
+    var head =
+      '<div class="card-head" data-level-id="' + esc(l.id) + '">' +
+      '<button class="pin-btn' + (isPinned ? " on" : "") + '" data-pin-id="' + esc(l.id) + '" title="置顶 / 取消置顶">' + (isPinned ? "★" : "☆") + '</button>' +
+      '<div class="card-title-wrap">' +
+      '<span class="card-name">' + esc(l.name) + '</span>' +
+      '<span class="card-meta">第 ' + esc(l.day) + ' 天 · <span class="stars">' + diffStars(l.difficulty) + '</span></span>' +
+      (req ? '<div class="card-req">所需：' + esc(req) + '</div>' : '') +
+      '</div>' +
+      '<span class="card-chevron">' + (isOpen ? "▲" : "▼") + '</span>' +
+      '</div>';
+    return '<div class="card' + (isPinned ? " pinned" : "") + '">' + head + (isOpen ? levelDetailHtml(l) : "") + '</div>';
+  }
+
+  function levelDetailHtml(l) {
+    var recs = (l.recommendedPets || []).map(function (r) {
+      var p = petById(r.petId);
+      var name = p
+        ? '<button class="pet-link" data-pet-id="' + esc(p.id) + '">' + esc(p.name) + '</button>'
+        : esc(r.petId);
+      return '<div class="rec">' + name +
+        (r.role ? '<span class="role">' + esc(r.role) + '</span>' : '') +
+        (r.note ? '<span class="note">' + esc(r.note) + '</span>' : '') +
+        '</div>';
+    }).join("");
+    var reqs = (l.requiredPets || []).map(function (id) {
+      var p = petById(id);
+      return p
+        ? '<button class="pet-link chip" data-pet-id="' + esc(p.id) + '">' + esc(p.name) + '</button>'
+        : '<span class="chip">' + esc(id) + '</span>';
+    }).join("");
+    var steps = (l.steps || []).map(function (s) { return '<li>' + esc(s) + '</li>'; }).join("");
+    return '<div class="card-body">' +
+      '<div class="sec"><h3>推荐首战宠物</h3>' + (recs || '<span class="muted">暂无</span>') + '</div>' +
+      '<div class="sec"><h3>所需宠物</h3><div class="chips">' + (reqs || '<span class="muted">暂无</span>') + '</div></div>' +
+      '<div class="sec"><h3>打法步骤</h3><ol class="steps">' + (steps || '<li>待补充</li>') + '</ol></div>' +
+      (l.tips ? '<div class="sec tips"><h3>提示</h3><p>' + esc(l.tips) + '</p></div>' : '') +
+      '</div>';
+  }
+
+  function renderLevels() {
+    var container = document.getElementById("levels-list");
+    var list = getFilteredLevels();
+    if (list.length === 0) {
+      container.innerHTML = '<div class="empty">没有找到匹配的关卡或宠物</div>';
+      return;
+    }
+    var groups = {};
+    list.forEach(function (l) { (groups[l.category] = groups[l.category] || []).push(l); });
+    var html = "";
+    Object.keys(groups).forEach(function (cat) {
+      html += '<div class="group"><h2 class="group-title">' + esc(cat) + '</h2>';
+      groups[cat].forEach(function (l) { html += levelCardHtml(l); });
+      html += '</div>';
+    });
+    container.innerHTML = html;
+  }
+
+  function renderTimeline() {
+    var dayList = document.getElementById("day-list");
+    var dayDetail = document.getElementById("day-detail");
+    var days = (data.days || []).slice().sort(function (a, b) { return a.day - b.day; });
+    if (selectedDay == null && days.length) selectedDay = days[0].day;
+    dayList.innerHTML = days.map(function (d) {
+      return '<button class="day-btn' + (d.day === selectedDay ? " active" : "") + '" data-day="' + d.day + '">第 ' + d.day + ' 天</button>';
+    }).join("");
+    var d = days.find(function (x) { return x.day === selectedDay; });
+    if (!d) { dayDetail.innerHTML = '<div class="empty">暂无时间线数据</div>'; return; }
+    var todos = (d.todo || []).map(function (t) { return '<li>' + esc(t) + '</li>'; }).join("");
+    var levels = (d.unlockLevels || []).map(levelById).filter(Boolean).map(levelCardHtml).join("");
+    dayDetail.innerHTML =
+      '<h2>' + esc(d.title || ("第 " + d.day + " 天")) + '</h2>' +
+      '<div class="sec"><h3>当日必做</h3><ul>' + (todos || '<li>待补充</li>') + '</ul></div>' +
+      '<div class="sec"><h3>可挑战关卡</h3>' + (levels || '<p class="muted">暂无</p>') + '</div>' +
+      '<p class="disclaimer">天数与关卡对应关系仅供参考，以游戏内实际解锁为准。</p>';
+  }
+
+  function renderPetModal() {
+    var overlay = document.getElementById("pet-modal");
+    if (!petModalId) { overlay.classList.remove("show"); return; }
+    var p = petById(petModalId);
+    if (!p) { overlay.classList.remove("show"); return; }
+    var buildRows = Object.keys(p.build || {}).map(function (k) {
+      return '<div class="kv"><span class="k">' + esc(k) + '</span><span class="v">' + esc(p.build[k]) + '</span></div>';
+    }).join("");
+    var moves = (p.moveset || []).map(function (m) { return '<li>' + esc(m) + '</li>'; }).join("");
+    document.getElementById("pet-modal-body").innerHTML =
+      '<h2>' + esc(p.name) + '</h2>' +
+      '<div class="pet-tags"><span class="tag">' + esc(p.type) + '</span><span class="tag">' + esc(p.role) + '</span></div>' +
+      '<div class="sec"><h3>获取方式</h3><p>' + esc(p.obtain) + '</p></div>' +
+      '<div class="sec"><h3>配招</h3><ul>' + (moves || '<li>待补充</li>') + '</ul></div>' +
+      '<div class="sec"><h3>养成</h3>' + (buildRows || '<p class="muted">待补充</p>') + '</div>' +
+      (p.note ? '<div class="sec"><h3>机制</h3><p>' + esc(p.note) + '</p></div>' : '') +
+      (p.tips ? '<div class="sec tips"><h3>打法提示</h3><p>' + esc(p.tips) + '</p></div>' : '');
+    overlay.classList.add("show");
+  }
+
+  function togglePin(id) {
+    if (pinned.has(id)) pinned.delete(id); else pinned.add(id);
+    localStorage.setItem(STORAGE_PIN_KEY, JSON.stringify(Array.from(pinned)));
+    render();
+  }
+
+  document.addEventListener("click", function (e) {
+    var pinBtn = e.target.closest("[data-pin-id]");
+    if (pinBtn) { togglePin(pinBtn.getAttribute("data-pin-id")); return; }
+    var petLink = e.target.closest("[data-pet-id]");
+    if (petLink) { petModalId = petLink.getAttribute("data-pet-id"); renderPetModal(); return; }
+    var head = e.target.closest("[data-level-id]");
+    if (head) { expandedId = (expandedId === head.getAttribute("data-level-id")) ? null : head.getAttribute("data-level-id"); render(); return; }
+    var dayBtn = e.target.closest("[data-day]");
+    if (dayBtn) { selectedDay = Number(dayBtn.getAttribute("data-day")); render(); return; }
+    var tab = e.target.closest(".tab");
+    if (tab) { view = tab.dataset.view; render(); return; }
+    if (e.target.id === "pet-modal" || e.target.closest("[data-close-modal]")) { petModalId = null; renderPetModal(); }
+  });
+
+  document.getElementById("search").addEventListener("input", function (e) {
+    query = e.target.value;
+    if (view !== "levels") view = "levels";
+    render();
+  });
+
+  loadData();
+</script>
+</body>
+</html>
