@@ -4,75 +4,194 @@
   "days": [
     {
       "day": 1,
-      "title": "第 1 天",
-      "todo": ["主线推进（量子回廊）", "谱尼七封印", "谱尼真身", "精灵王试炼（每日）"],
-      "unlockLevels": ["level-puni-seal", "level-puni-real", "level-trial"]
+      "title": "第 1 天 · 传说之路起步",
+      "todo": ["主线推进，免费拿到谱尼（圣灵谱尼主 C）", "传说之路 · 友好试炼（赛尔豆/体力药剂/泰坦之灵/经验全部拉满）", "传说之路 · 系统谱尼试用（圣堂之门→圣光气→圣灵魔闪光）", "养星光鲁斯王（学习力：攻击 + 体力）", "精灵王试炼（每日）"],
+      "unlockLevels": ["level-ct1", "level-ct2", "level-trial"]
     },
     {
       "day": 2,
-      "title": "第 2 天",
-      "todo": ["怒雷神裁·雷伊 · 雷鸣初现", "灵石守卫第三关", "精灵王试炼（每日）"],
-      "unlockLevels": ["level-raich-1", "level-lingshi-3", "level-trial"]
+      "title": "第 2 天 · 谱尼真身攻坚",
+      "todo": ["传说之路 · 挑战奥斯卡（鲁斯王，需打 2 天）", "传说之路 · 圣光联军（欧德奈瑞/星域之魂/六界帝神/阴冥妖姬）", "精灵王试炼（每日）"],
+      "unlockLevels": ["level-ct3", "level-ct4", "level-trial"]
     },
     {
       "day": 3,
-      "title": "第 3 天",
-      "todo": ["怒雷神裁·雷伊 · 电锋凝聚", "灭战神决·盖亚 · 道之挑战", "精灵王试炼（每日）"],
-      "unlockLevels": ["level-raich-2", "level-gaia-dao", "level-trial"]
+      "title": "第 3 天 · 点灯收尾",
+      "todo": ["传说之路 · 收尾点灯（点诗词 10 次锁 1 次、卸新兵套）", "灵石守卫第三关（零氪）", "精灵王试炼（每日）"],
+      "unlockLevels": ["level-ct5", "level-lingshi-3", "level-trial"]
     },
     {
       "day": 4,
-      "title": "第 4 天",
+      "title": "第 4 天 · 圣灵高难起步",
+      "todo": ["圣灵谱尼 · 七大封印（虚无→圣洁）", "怒雷神裁·雷伊 · 雷鸣初现", "镇世神岳·玄武试炼", "精灵王试炼（每日）"],
+      "unlockLevels": ["level-sl1", "level-raich-1", "level-xuanwu", "level-trial"]
+    },
+    {
+      "day": 5,
+      "title": "第 5 天 · 圣灵主宰",
+      "todo": ["圣灵谱尼 · 圣灵主宰（第六关）", "圣灵谱尼 · 三件套", "怒雷神裁·雷伊 · 电锋凝聚", "灭战神决·盖亚 · 道之挑战", "精灵王试炼（每日）"],
+      "unlockLevels": ["level-sl2", "level-sl3", "level-raich-2", "level-gaia-dao", "level-trial"]
+    },
+    {
+      "day": 6,
+      "title": "第 6 天 · 支线推进",
       "todo": ["怒雷神裁·雷伊 · 天域试炼", "灭战神决·盖亚 · 逆转挑战", "精灵王试炼（每日）"],
       "unlockLevels": ["level-raich-3", "level-gaia-nizhuan", "level-trial"]
     },
     {
-      "day": 5,
-      "title": "第 5 天",
+      "day": 7,
+      "title": "第 7 天 · 支线收尾",
       "todo": ["怒雷神裁·雷伊 · 怒雷神裁", "灭战神决·盖亚 · 极道挑战", "精灵王试炼（每日）"],
       "unlockLevels": ["level-raich-4", "level-gaia-jidao", "level-trial"]
     }
   ],
   "levels": [
     {
-      "id": "level-puni-seal",
-      "name": "谱尼七封印",
-      "category": "谱尼",
+      "id": "level-ct1",
+      "name": "友好试炼",
+      "category": "传说之路·谱尼",
       "day": 1,
-      "difficulty": 2,
+      "difficulty": 1,
       "recommendedPets": [
-        { "petId": "starlight-lux", "role": "主力", "note": "单宠打穿" }
+        { "petId": "shengling-puni", "role": "主线免费主 C", "note": "" }
       ],
-      "requiredPets": ["starlight-lux"],
+      "requiredPets": ["shengling-puni"],
       "steps": [
-        "星光鲁斯王开局「随风逐浪」强化",
-        "随后「浪打千击」逐个击破七个封印",
-        "血量低时用「排山倒海」吸回"
+        "把赛尔豆、超级体力药剂、泰坦之灵、经验全部拉满贡献",
+        "与传奇精灵完成 3 次友好互动",
+        "击败对手精灵即可，难度低、熟悉操作为主"
       ],
-      "tips": "新号第一天即可用一只鲁斯王打穿谱尼七封印。"
+      "tips": ""
     },
     {
-      "id": "level-puni-real",
-      "name": "谱尼真身",
-      "category": "谱尼",
+      "id": "level-ct2",
+      "name": "系统谱尼试用",
+      "category": "传说之路·谱尼",
       "day": 1,
-      "difficulty": 3,
+      "difficulty": 1,
       "recommendedPets": [
-        { "petId": "starlight-lux", "role": "主力", "note": "单挑" }
+        { "petId": "shengling-puni", "role": "系统试用", "note": "" }
+      ],
+      "requiredPets": ["shengling-puni"],
+      "steps": [
+        "用系统送的谱尼打 3 个精灵",
+        "固定套路：圣堂之门消强 → 圣光气提升输出 → 圣灵魔闪光输出",
+        "3 个精灵都套用同一流程"
+      ],
+      "tips": "通关可得 1-2 个圣灵之魂。"
+    },
+    {
+      "id": "level-ct3",
+      "name": "挑战奥斯卡",
+      "category": "传说之路·谱尼",
+      "day": 2,
+      "difficulty": 2,
+      "recommendedPets": [
+        { "petId": "starlight-lux", "role": "主力", "note": "星光闪击起手" }
       ],
       "requiredPets": ["starlight-lux"],
       "steps": [
-        "先通过谱尼七封印解锁真身",
-        "鲁斯王「随风逐浪」强化后「浪打千击」持续输出",
-        "提前备好足够体力药剂"
+        "星光鲁斯王首发「星光·闪击」起手",
+        "之后持续「星光·浪打千击」稳定输出"
       ],
-      "tips": "打不过可先做七封印积累资源再来。"
+      "tips": "此关需打 2 天，第二天接着打。"
+    },
+    {
+      "id": "level-ct4",
+      "name": "圣光联军",
+      "category": "传说之路·谱尼",
+      "day": 2,
+      "difficulty": 3,
+      "recommendedPets": [
+        { "petId": "starlight-lux", "role": "主力", "note": "" }
+      ],
+      "requiredPets": ["starlight-lux"],
+      "steps": [
+        "依次打：欧德奈瑞 → 星域之魂 → 六界帝神 → 阴冥妖姬",
+        "星域之魂注意血量，用「排山倒海」边打边回血",
+        "六界帝神、阴冥妖姬一直「浪打千击」"
+      ],
+      "tips": ""
+    },
+    {
+      "id": "level-ct5",
+      "name": "收尾点灯",
+      "category": "传说之路·谱尼",
+      "day": 3,
+      "difficulty": 2,
+      "recommendedPets": [
+        { "petId": "starlight-lux", "role": "主力", "note": "" }
+      ],
+      "requiredPets": ["starlight-lux"],
+      "steps": [
+        "先点诗词交互 10 次锁定 1 次（注意千万别锁错）",
+        "卸下新兵套装降低判定难度",
+        "打迈尔斯 / 奥斯卡，属性克制可一击带走，没秒掉补「星光·闪击」"
+      ],
+      "tips": "整体约 2-3 天通关谱尼真身。"
+    },
+    {
+      "id": "level-sl1",
+      "name": "七大封印",
+      "category": "圣灵谱尼",
+      "day": 4,
+      "difficulty": 4,
+      "recommendedPets": [
+        { "petId": "king-hamo", "role": "主力", "note": "" },
+        { "petId": "shengling-puni", "role": "副手", "note": "" }
+      ],
+      "requiredPets": ["king-hamo"],
+      "steps": [
+        "圣灵谱尼高难：七大封印（虚无→圣洁）",
+        "虚无：哈莫雷特回避耗招 / 艾莫第五",
+        "元素：草潘",
+        "能量：幻境耗招后小火猴吃 PP",
+        "生命：靠瞬杀",
+        "轮回：圣甲盖亚 / 闪皮",
+        "永恒：火潘 + 六界弹伤 + 魔钰补刀",
+        "圣洁：千裳或哈莫"
+      ],
+      "tips": "进阶关卡，需哈莫雷特、草潘、幻境、魔钰、六界等多只精灵（详细数据待补充）。"
+    },
+    {
+      "id": "level-sl2",
+      "name": "圣灵主宰",
+      "category": "圣灵谱尼",
+      "day": 5,
+      "difficulty": 5,
+      "recommendedPets": [
+        { "petId": "shengling-puni", "role": "主力", "note": "" }
+      ],
+      "requiredPets": ["king-hamo"],
+      "steps": [
+        "圣灵主宰（第六关）Boss：必先、封属、硬化（免疫非暴击）",
+        "用幻境界皇 / 咤克斯引爆 + 压血魔钰、毁灭机甲强攻",
+        "或潘克多斯 + 蒂朵 + 魔钰「梦境残缺」流程",
+        "每日首胜稳定 +1 进度，累计 7 点，可用 24 个神圣之灵激活"
+      ],
+      "tips": "进阶关卡（详细数据待补充）。"
+    },
+    {
+      "id": "level-sl3",
+      "name": "三件套",
+      "category": "圣灵谱尼",
+      "day": 5,
+      "difficulty": 4,
+      "recommendedPets": [
+        { "petId": "shengling-puni", "role": "主力", "note": "" }
+      ],
+      "requiredPets": ["king-hamo"],
+      "steps": [
+        "潘克多斯 / 蒂朵送死后，压血魔钰、月照星魂强攻",
+        "无表姐可拼顽强 / 回神特性"
+      ],
+      "tips": "进阶关卡（详细数据待补充）。"
     },
     {
       "id": "level-raich-1",
       "name": "雷鸣初现",
       "category": "怒雷神裁·雷伊",
-      "day": 2,
+      "day": 4,
       "difficulty": 2,
       "recommendedPets": [
         { "petId": "starlight-lux", "role": "主力", "note": "爆攻配置" }
@@ -89,7 +208,7 @@
       "id": "level-raich-2",
       "name": "电锋凝聚",
       "category": "怒雷神裁·雷伊",
-      "day": 3,
+      "day": 5,
       "difficulty": 3,
       "recommendedPets": [
         { "petId": "starlight-lux", "role": "主力", "note": "爆攻 / 压防" },
@@ -110,7 +229,7 @@
       "id": "level-raich-3",
       "name": "天域试炼",
       "category": "怒雷神裁·雷伊",
-      "day": 4,
+      "day": 6,
       "difficulty": 4,
       "recommendedPets": [
         { "petId": "king-hamo", "role": "主力", "note": "" },
@@ -128,7 +247,7 @@
       "id": "level-raich-4",
       "name": "怒雷神裁",
       "category": "怒雷神裁·雷伊",
-      "day": 5,
+      "day": 7,
       "difficulty": 4,
       "recommendedPets": [
         { "petId": "king-hamo", "role": "主力", "note": "" }
@@ -144,7 +263,7 @@
       "id": "level-gaia-dao",
       "name": "道之挑战",
       "category": "灭战神决·盖亚",
-      "day": 3,
+      "day": 5,
       "difficulty": 2,
       "recommendedPets": [
         { "petId": "king-hamo", "role": "血之道", "note": "叠强化抗回合" },
@@ -163,7 +282,7 @@
       "id": "level-gaia-nizhuan",
       "name": "逆转挑战",
       "category": "灭战神决·盖亚",
-      "day": 4,
+      "day": 6,
       "difficulty": 3,
       "recommendedPets": [
         { "petId": "king-hamo", "role": "主力", "note": "逆转邪道主力" }
@@ -181,7 +300,7 @@
       "id": "level-gaia-jidao",
       "name": "极道挑战",
       "category": "灭战神决·盖亚",
-      "day": 5,
+      "day": 7,
       "difficulty": 4,
       "recommendedPets": [
         { "petId": "king-hamo", "role": "主力", "note": "" }
@@ -214,7 +333,7 @@
       "id": "level-lingshi-3",
       "name": "灵石守卫第三关",
       "category": "灵石守卫",
-      "day": 2,
+      "day": 3,
       "difficulty": 2,
       "recommendedPets": [
         { "petId": "starlight-lux", "role": "主力", "note": "零氪打法" }
@@ -226,6 +345,26 @@
         "两回合解决：「克制」+「星光·闪击」"
       ],
       "tips": "背包不要带西游羁绊，要压防御当玻璃大炮。"
+    },
+    {
+      "id": "level-xuanwu",
+      "name": "镇世神岳·玄武试炼",
+      "category": "镇世神岳·玄武",
+      "day": 4,
+      "difficulty": 4,
+      "recommendedPets": [
+        { "petId": "zhenyue-xuanwu", "role": "目标精灵", "note": "" }
+      ],
+      "requiredPets": [],
+      "steps": [
+        "三重试炼：玄甲窥真 → 玄冥岁轮 → 七宿归垣",
+        "依次解锁玄甲之核 / 岁轮之核 / 七宿之核后领取",
+        "虚境挑战中出战的精灵会被记录，整个流程内不能重复上阵，每天仅 1 次免费机会",
+        "第一关 Boss 随机 4 种特性（100%复活 / 全属性弱化 / 3回合后秒杀 / 免疫暴击），需不同阵容应对",
+        "第二关常见「等级小于 100 级的精灵击杀」限制，可用精灵还原压到 99 级",
+        "弹伤用紫火、强攻用绿火"
+      ],
+      "tips": "最新更新的机械·地面系物理输出宠物。"
     }
   ],
   "pets": [
@@ -275,6 +414,53 @@
       },
       "note": "与乔特鲁德同放背包可激活「龙族羁绊」（体力 +20%、受伤 -20%）。",
       "tips": "打法顺序：龙子诞生强化 → 狂龙击杀消强 → 王·龙战八荒输出。"
+    },
+    {
+      "id": "shengling-puni",
+      "name": "圣灵谱尼",
+      "type": "圣灵系",
+      "role": "主线免费主 C",
+      "obtain": "主线免费获得",
+      "moveset": [
+        "圣灵魔闪光（全体伤害 + 回溯机制）",
+        "圣光气（提升输出；突破三星后免疫异常）",
+        "圣堂之门（消强）",
+        "铁甲苍龙啸（第五技能，红宝石解锁）"
+      ],
+      "build": {
+        "学习力": "待核对",
+        "性格": "待核对",
+        "天赋": "待核对",
+        "特性": "待核对",
+        "刻印": "待核对",
+        "抗性": "待核对"
+      },
+      "note": "开荒主线赠送的免费主 C，技能「圣灵魔闪光」全体伤害。",
+      "tips": "金币优先把主 C 武器强化到 +15；经验副本把谱尼放首位蹭经验。"
+    },
+    {
+      "id": "zhenyue-xuanwu",
+      "name": "镇世神岳·玄武",
+      "type": "机械·地面",
+      "role": "物理输出 / 减伤坦克",
+      "obtain": "通关三重试炼「玄甲窥真 → 玄冥岁轮 → 七宿归垣」后领取",
+      "moveset": [
+        "玄武布禁（核心）",
+        "卸甲缚咒",
+        "岩之分身",
+        "记忆铭刻（先制+3：消回合回血、消双方强化、下回合先制+2、低伤害加300护盾、技能无效时令对手石化）",
+        "质点仪式（5 回合免疫并反弹异常、免疫能力下降并可反转）"
+      ],
+      "build": {
+        "学习力": "优先防御 + 体力（平民保生存），再堆攻击",
+        "性格": "开朗（抢速）/ 固执（耐打）",
+        "天赋": "PVE 点「岩固 + 后击」，气运优先点满精通 / 固化 / 岩固 / 沉稳",
+        "特性": "免疫异常 / 秒杀 +「气吞山河」层数减伤增伤",
+        "刻印": "待核对",
+        "抗性": "待核对"
+      },
+      "note": "种族值 650（体力100 / 攻击125 / 防御120 / 特攻95 / 特防90 / 速度120）。",
+      "tips": "PVE 配招用「玄武布禁 + 卸甲缚咒 + 岩之分身」，契灵首选胖猫。"
     }
   ]
 }
